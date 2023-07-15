@@ -1,8 +1,8 @@
 # Using some C code in Rust
 
-The `is-c` folder contains c code that we want to use in rust. The `uses-c` folder contains a rust a library that uses the c code. Both statically and dynamically compiled libraries can be used.
+The `is-c` folder contains c code that we want to use in rust. The `uses-c` folder contains a rust library that uses the c code. Both statically and dynamically compiled libraries can be used but we focus on statically here.
 
-## How to use (statically)
+## How to use
 
 1. Have a rust library aptly names `uses-c
 2. Have an `extern` block somewhere in the rust code, linking to a static c library. For example:
@@ -34,7 +34,7 @@ __nice__.
 4. Compile the C code using `gcc -c verynice.c -o .verynice.o` to get an object file.
 
 5. For whatever reason we cannot use an object file directly so now, we put it into an archive!
-This is done using `ar rcs libverynice.a verynice.o`. An important step just happend: we added "lib" to the beginning of the file. Because reasons a library file does not start with "lib" will not be found in the linking step later. Why? I don't know.
+This is done using `ar rcs libverynice.a verynice.o`. An important step just happend: we added "lib" to the beginning of the file. And because of reasons a library file that does not start with "lib" will not be found in the linking step later. Why? I don't know.
 
 6. With our c library now finally being done, let's help rust with finding it.
 In the rust directory, right next to the `Cargo.toml` we create a `build.rs` file and put this in:
